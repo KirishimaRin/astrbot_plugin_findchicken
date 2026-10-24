@@ -43,7 +43,8 @@ EXPECTED_FOUND = (
     "平台：Pixiv\n"
     "匹配：视觉匹配\n"
     "名字：夕焼け\n"
-    "账号：@テスト絵師\n\n"
+    "账号：@テスト絵師\n"
+    "来源：https://www.pixiv.net/artworks/123\n\n"
     "⚠识图存在误差，请自行核对哦~"
 )
 
@@ -281,6 +282,8 @@ def test_multiple_results_are_combined():
     assert outputs[0].count("**已找到图片来源**") == 1
     assert "平台：Pixiv" in outputs[0]
     assert "平台：X (Twitter)" in outputs[0]
+    assert "来源：https://www.pixiv.net/artworks/123" in outputs[0]
+    assert "来源：https://x.com/artist_x/status/1" in outputs[0]
 
 
 def test_quoted_reply_auto_mention_fallback():

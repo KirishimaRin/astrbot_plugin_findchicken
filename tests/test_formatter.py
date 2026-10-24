@@ -33,7 +33,8 @@ def test_format_single_hit_matches_template():
         "平台：Pixiv\n"
         "匹配：视觉匹配\n"
         "名字：夕焼け\n"
-        "账号：@テスト絵師\n\n"
+        "账号：@テスト絵師\n"
+        "来源：https://www.pixiv.net/artworks/123\n\n"
         "⚠识图存在误差，请自行核对哦~"
     )
 
@@ -42,6 +43,13 @@ def test_format_direct_url_match_label():
     text = format_hits([make_hit()], match_label="图片直链")
 
     assert "匹配：图片直链" in text
+
+
+def test_missing_page_url_omits_source_line():
+    text = format_hit(make_hit(page_url=""), "视觉匹配")
+
+    assert "来源：" not in text
+    assert text.endswith("账号：@テスト絵師")
 
 
 def test_show_similarity_only_for_visual_match():

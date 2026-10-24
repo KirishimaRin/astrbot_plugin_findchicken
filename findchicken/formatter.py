@@ -71,14 +71,15 @@ def format_hit(
     if show_similarity and match_label == MATCH_VISUAL:
         match = f"{match}（相似度 {hit.similarity:.1f}%）"
 
-    return "\n".join(
-        (
-            f"平台：{hit.platform}",
-            f"匹配：{match}",
-            f"名字：{hit.display_name}",
-            f"账号：{hit.display_account}",
-        )
-    )
+    lines = [
+        f"平台：{hit.platform}",
+        f"匹配：{match}",
+        f"名字：{hit.display_name}",
+        f"账号：{hit.display_account}",
+    ]
+    if hit.page_url:
+        lines.append(f"来源：{hit.page_url}")
+    return "\n".join(lines)
 
 
 def format_hits(
