@@ -10,7 +10,7 @@ from collections.abc import Sequence
 from .models import SearchHit
 
 #: 找到结果时的固定开头。
-HEADER = "**已找到鸡**"
+HEADER = "**已找到图片来源**"
 
 #: 找到结果时的固定结尾。
 FOOTER = "⚠识图存在误差，请自行核对哦~"

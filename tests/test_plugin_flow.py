@@ -39,7 +39,7 @@ PIXIV_RESULTS = {
 }
 
 EXPECTED_FOUND = (
-    "**已找到鸡**\n\n"
+    "**已找到图片来源**\n\n"
     "平台：Pixiv\n"
     "匹配：视觉匹配\n"
     "名字：夕焼け\n"
@@ -278,7 +278,7 @@ def test_multiple_results_are_combined():
 
     outputs = run_handler(plugin, event)
 
-    assert outputs[0].count("**已找到鸡**") == 1
+    assert outputs[0].count("**已找到图片来源**") == 1
     assert "平台：Pixiv" in outputs[0]
     assert "平台：X (Twitter)" in outputs[0]
 

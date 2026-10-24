@@ -2,7 +2,7 @@
 
 发送图片或引用图片，再输入 `kfc50`，即可通过 [SauceNAO](https://saucenao.com/) 查询图片来源。也支持直接发送图片链接，结果以文字展示平台、匹配方式、作品或作者名称及账号。
 
-本仓库 fork 自 [ALpapam/astrbot_plugin_findchicken](https://github.com/ALpapam/astrbot_plugin_findchicken)，原作者署名为 **ncy13**。本分支调整了触发指令和搜索提示，图片检索及结果格式沿用上游实现。
+本仓库 fork 自 [ALpapam/astrbot_plugin_findchicken](https://github.com/ALpapam/astrbot_plugin_findchicken)，原作者署名为 **ncy13**。本分支调整了触发指令和搜索提示，图片检索逻辑沿用上游实现，成功结果标题改为「已找到图片来源」。
 
 ## 指令与回复
 
@@ -19,7 +19,7 @@
 搜索成功后的回复示例：
 
 ```text
-**已找到鸡**
+**已找到图片来源**
 
 平台：Pixiv
 匹配：视觉匹配
@@ -123,7 +123,7 @@ python -m pytest tests -q
 
 - 上游项目：[ALpapam/astrbot_plugin_findchicken](https://github.com/ALpapam/astrbot_plugin_findchicken)，原作者署名 **ncy13**。
 - 当前分支：[KirishimaRin/astrbot_plugin_findchicken](https://github.com/KirishimaRin/astrbot_plugin_findchicken)。
-- 本分支修改：触发指令由 `找鸡` 改为 `kfc50`；搜索提示改为「🐔 正在寻找，请稍等…」；同步指令说明、QQ 引用消息匹配和用法文档。
+- 本分支修改：触发指令由 `找鸡` 改为 `kfc50`；搜索提示改为「🐔 正在寻找，请稍等…」；成功结果标题改为「已找到图片来源」；同步指令说明、QQ 引用消息匹配和用法文档。
 
 - [SauceNAO API 文档](https://saucenao.com/user.php?page=search-api)
 - [AstrBot 插件开发指南](https://astrbot.app/dev/star/plugin-new.html)

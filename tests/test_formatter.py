@@ -29,7 +29,7 @@ def test_format_single_hit_matches_template():
     text = format_hits([make_hit()], match_label="视觉匹配")
 
     assert text == (
-        "**已找到鸡**\n\n"
+        "**已找到图片来源**\n\n"
         "平台：Pixiv\n"
         "匹配：视觉匹配\n"
         "名字：夕焼け\n"
