@@ -1,13 +1,24 @@
-# 找鸡（AstrBot 插件）
+# kfc50 · AstrBot 图片来源搜索插件
 
-本仓库基于 [ALpapam/astrbot_plugin_findchicken](https://github.com/ALpapam/astrbot_plugin_findchicken) 修改，使用指令 `kfc50`。搜索提示为「🐔 正在寻找，请稍等…」，搜索结果格式沿用原版。
+发送图片或引用图片，再输入 `kfc50`，即可通过 [SauceNAO](https://saucenao.com/) 查询图片来源。也支持直接发送图片链接，结果以文字展示平台、匹配方式、作品或作者名称及账号。
 
-发送「kfc50」并附带 / 引用一张图片，或直接发送图片链接，插件会调用
-[SauceNAO](https://saucenao.com/) 搜索图片来源，并用文字消息返回结果。
+本仓库 fork 自 [ALpapam/astrbot_plugin_findchicken](https://github.com/ALpapam/astrbot_plugin_findchicken)，原作者署名为 **ncy13**。本分支调整了触发指令和搜索提示，图片检索及结果格式沿用上游实现。
 
-## 效果
+## 指令与回复
 
+**指令：** `kfc50`
+
+**说明：** kfc50：引用/附带图片或发送图片链接，搜索图片来源。
+
+启用 `send_progress` 时，提示文案为：
+
+```text
+🐔 正在寻找，请稍等…
 ```
+
+搜索成功后的回复示例：
+
+```text
 **已找到鸡**
 
 平台：Pixiv
@@ -24,19 +35,17 @@
 
 ## 安装
 
-1. 将整个 `astrbot_plugin_findchicken` 目录放入 AstrBot 的 `data/plugins/` 下：
+在 AstrBot 管理面板中打开 **插件 → 安装插件 → 从链接安装**，填写本分支仓库地址：
 
-   ```
-   AstrBot/data/plugins/astrbot_plugin_findchicken/
-   ```
+```text
+https://github.com/KirishimaRin/astrbot_plugin_findchicken
+```
 
-2. 在 AstrBot WebUI 的「插件」页面点击刷新 / 重载插件。
-3. **配置 SauceNAO API Key**（必填）：注册 SauceNAO 账号后，在
-   <https://saucenao.com/user.php?page=search-api> 页面获取 API Key，
-   填入插件配置的 `api_key` 项。SauceNAO 已不允许匿名账号调用 API，
-   没有 Key 时插件会提示配置。
-4. 插件依赖 `aiohttp`，AstrBot 已内置；若你的环境缺失，可在插件目录执行
-   `pip install -r requirements.txt`。
+安装后，打开插件配置，将 [SauceNAO Search API 页面](https://saucenao.com/user.php?page=search-api) 获取的 Key 填入 `api_key`，保存并重载插件。
+
+也可以将整个项目目录放入 `AstrBot/data/plugins/astrbot_plugin_findchicken/`，再通过管理面板加载。插件依赖 `aiohttp`；若提示缺少依赖，在 AstrBot 实际使用的 Python 环境中安装 `requirements.txt`。
+
+本分支与上游使用相同的插件 ID。已有上游安装时，先备份插件配置，再替换插件代码，避免同时加载两个副本。
 
 ## 配置
 
@@ -53,7 +62,7 @@
 | `show_similarity` | bool | false | 是否在「匹配」后显示相似度百分比 |
 | `cooldown_seconds` | int | 10 | 同一用户的搜索冷却时间（秒），0 为不限制 |
 
-> 国内服务器通常需要给 `proxy` 配置代理才能访问 `saucenao.com`。
+服务器能直连 SauceNAO 时，`proxy` 留空；访问失败时再配置代理。Docker 部署中，`127.0.0.1` 指 AstrBot 容器本身，代理地址需能从容器内访问。
 
 ## 使用
 
@@ -67,10 +76,8 @@
 
 ## 常见问题
 
-- **提示「还没有配置 SauceNAO API Key」**：SauceNAO 已不允许匿名账号调用 API，
-  请到插件配置填写 `api_key`。
-- **提示「API Key 无效或未生效」**：确认 Key 复制完整、没有多余空格；免费账号
-  额度约 150 次/天，额度用尽也会失败。
+- **提示「还没有配置 SauceNAO API Key」**：在插件配置中填写 `api_key`，保存并重载。
+- **提示「API Key 无效或未生效」**：确认 Key 复制完整、没有多余空格，并在 SauceNAO 账户页面检查 API 状态和剩余额度。
 - **提示「被 Cloudflare 拦截」**：通常是服务器网络或出口 IP 问题，可配置 `proxy`
   后重试。
 - **搜不到结果**：尝试调低 `similarity_threshold`，或换一张清晰度更高、
@@ -112,7 +119,11 @@ python -m pytest tests -q
 
 测试使用本地 stub 模拟 AstrBot API，不会访问 SauceNAO。
 
-## 参考
+## Fork 来源与文档
+
+- 上游项目：[ALpapam/astrbot_plugin_findchicken](https://github.com/ALpapam/astrbot_plugin_findchicken)，原作者署名 **ncy13**。
+- 当前分支：[KirishimaRin/astrbot_plugin_findchicken](https://github.com/KirishimaRin/astrbot_plugin_findchicken)。
+- 本分支修改：触发指令由 `找鸡` 改为 `kfc50`；搜索提示改为「🐔 正在寻找，请稍等…」；同步指令说明、QQ 引用消息匹配和用法文档。
 
 - [SauceNAO API 文档](https://saucenao.com/user.php?page=search-api)
 - [AstrBot 插件开发指南](https://astrbot.app/dev/star/plugin-new.html)
