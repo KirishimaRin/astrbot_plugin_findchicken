@@ -17,11 +17,11 @@ FOOTER = "⚠识图存在误差，请自行核对哦~"
 
 #: 没有识别到图片时发送的使用说明。
 USAGE_TEXT = (
-    "请发送「找鸡」时附带或引用一张图片，也可以直接发送图片链接哦～\n\n"
+    "请发送「kfc50」时附带或引用一张图片，也可以直接发送图片链接哦～\n\n"
     "用法示例：\n"
-    "1. 引用一张图片后发送「找鸡」\n"
-    "2. 发送图片并发送「找鸡」\n"
-    "3. 发送「找鸡 https://example.com/image.jpg」"
+    "1. 引用一张图片后发送「kfc50」\n"
+    "2. 发送图片并发送「kfc50」\n"
+    "3. 发送「kfc50 https://example.com/image.jpg」"
 )
 
 #: SauceNAO 没有返回结果。
@@ -54,7 +54,7 @@ SEARCH_FAILED_TEXT = (
 TOO_FREQUENT_TEMPLATE = "别急，鸡要慢慢找～请 {seconds} 秒后再试。"
 
 #: 正在搜索的提示。
-PROGRESS_TEXT = "🐔 正在找鸡，请稍等…"
+PROGRESS_TEXT = "🐔 正在寻找，请稍等…"
 
 #: 「匹配」字段的两种取值。
 MATCH_VISUAL = "视觉匹配"

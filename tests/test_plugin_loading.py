@@ -26,7 +26,7 @@ def test_astrbot_import_style(tmp_path, monkeypatch):
 
     try:
         assert module.FindChickenPlugin.__mro__[-2].__name__ == "Star"
-        assert module.FindChickenPlugin.find_chicken.__command__ == "找鸡"
+        assert module.FindChickenPlugin.find_chicken.__command__ == "kfc50"
     finally:
         for name in list(sys.modules):
             if name == "data" or name.startswith(f"data.plugins.{PLUGIN_ROOT.name}"):

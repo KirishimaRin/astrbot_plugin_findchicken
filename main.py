@@ -1,7 +1,7 @@
-"""找鸡插件：通过 SauceNAO 搜索图片出处。
+"""kfc50插件：通过 SauceNAO 搜索图片出处。
 
 用法：
-    引用一张图片（或附带图片、发送图片链接）后发送「找鸡」，
+    引用一张图片（或附带图片、发送图片链接）后发送「kfc50」，
     插件会把 SauceNAO 的搜索结果整理成文字消息返回。
 """
 
@@ -51,7 +51,7 @@ def _guess_image_filename(data: bytes) -> str:
 
 
 class FindChickenPlugin(Star):
-    """「找鸡」插件的入口类。"""
+    """「kfc50」插件的入口类。"""
 
     def __init__(self, context: Context, config: AstrBotConfig) -> None:
         super().__init__(context)
@@ -79,9 +79,9 @@ class FindChickenPlugin(Star):
     # 指令
     # ------------------------------------------------------------------
 
-    @filter.command("找鸡")
+    @filter.command("kfc50")
     async def find_chicken(self, event: AstrMessageEvent):
-        """找鸡：引用/附带图片或发送图片链接，搜索图片来源。"""
+        """kfc50：引用/附带图片或发送图片链接，搜索图片来源。"""
         for text in await self._run_search(event):
             yield event.plain_result(text)
 
@@ -93,8 +93,8 @@ class FindChickenPlugin(Star):
         """兼容 QQ 回复图片时自动插入 @ 导致指令无法匹配的情况。
 
         QQ 回复他人消息时客户端会在消息前插入被回复者的 At，
-        message_str 会变成「 @昵称(qq) 找鸡」，标准指令无法匹配。
-        这里直接检查消息链结构，在确认是「回复 + 找鸡」时补发结果。
+        message_str 会变成「 @昵称(qq) kfc50」，标准指令无法匹配。
+        这里直接检查消息链结构，在确认是「回复 + kfc50」时补发结果。
         """
         if not self._looks_like_quoted_command(event):
             return
@@ -105,7 +105,7 @@ class FindChickenPlugin(Star):
 
     @staticmethod
     def _looks_like_quoted_command(event: AstrMessageEvent) -> bool:
-        """判断消息是否为「回复他人 + 找鸡」的特殊消息链。"""
+        """判断消息是否为「回复他人 + kfc50」的特殊消息链。"""
         messages = event.get_messages()
         if not isinstance(messages, list) or len(messages) not in (3, 4):
             return False
@@ -135,10 +135,10 @@ class FindChickenPlugin(Star):
         command_text = getattr(rest[0], "text", "")
         if not isinstance(command_text, str):
             return False
-        return re.fullmatch(r"/?找鸡(?:\s+.+)?", command_text.strip()) is not None
+        return re.fullmatch(r"/?kfc50(?:\s+.+)?", command_text.strip()) is not None
 
     async def _run_search(self, event: AstrMessageEvent) -> list[str]:
-        """执行一次找鸡流程，返回需要依次发送的文本消息。"""
+        """执行一次kfc50流程，返回需要依次发送的文本消息。"""
         sender_id = str(event.get_sender_id() or "")
 
         remaining = self._cooldown_remaining(sender_id)

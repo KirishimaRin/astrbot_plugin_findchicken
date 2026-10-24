@@ -1,6 +1,8 @@
 # 找鸡（AstrBot 插件）
 
-发送「找鸡」并附带 / 引用一张图片，或直接发送图片链接，插件会调用
+本仓库基于 [ALpapam/astrbot_plugin_findchicken](https://github.com/ALpapam/astrbot_plugin_findchicken) 修改，使用指令 `kfc50`。搜索提示为「🐔 正在寻找，请稍等…」，搜索结果格式沿用原版。
+
+发送「kfc50」并附带 / 引用一张图片，或直接发送图片链接，插件会调用
 [SauceNAO](https://saucenao.com/) 搜索图片来源，并用文字消息返回结果。
 
 ## 效果
@@ -47,7 +49,7 @@
 | `timeout_seconds` | int | 30 | 请求超时（5-120 秒） |
 | `max_results` | int | 1 | 最多展示几条结果（1-5） |
 | `similarity_threshold` | int | 30 | 最低相似度（%），低于该值的结果不展示 |
-| `send_progress` | bool | true | 搜索前是否先发一条「正在找鸡」提示 |
+| `send_progress` | bool | true | 搜索前是否先发一条「正在寻找」提示 |
 | `show_similarity` | bool | false | 是否在「匹配」后显示相似度百分比 |
 | `cooldown_seconds` | int | 10 | 同一用户的搜索冷却时间（秒），0 为不限制 |
 
@@ -57,9 +59,9 @@
 
 在 QQ 等平台（需 @机器人 或使用唤醒前缀，取决于 AstrBot 配置）：
 
-1. **引用图片**：引用一张图片消息，然后发送 `找鸡`；
-2. **附带图片**：发送图片的同时发送 `找鸡`；
-3. **图片链接**：发送 `找鸡 https://example.com/image.jpg`。
+1. **引用图片**：引用一张图片消息，然后发送 `kfc50`；
+2. **附带图片**：发送图片的同时发送 `kfc50`；
+3. **图片链接**：发送 `kfc50 https://example.com/image.jpg`。
 
 没有检测到图片时会返回使用说明。
 
@@ -81,7 +83,7 @@
 - 引用图片优先使用 AstrBot 内置的 `extract_quoted_message_images`（4.25+），
   低版本回退到 `Reply.chain`、被引用消息文本中的链接和原始消息段；
 - 针对 QQ 回复图片时会自动插入被回复者 `@` 的情况，额外注册了一个
-  `aiocqhttp` 监听器兜底，避免「回复 + 找鸡」因指令匹配失败而无响应；
+  `aiocqhttp` 监听器兜底，避免「回复 + kfc50」因指令匹配失败而无响应；
 - 只依赖 AstrBot 插件 API 与 `aiohttp`，不写入任何持久化数据。
 
 ## 目录结构

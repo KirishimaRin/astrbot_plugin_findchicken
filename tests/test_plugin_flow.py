@@ -139,7 +139,7 @@ def test_image_input_returns_template():
 
 def test_url_input_uses_direct_url_match_label():
     plugin = make_plugin(PIXIV_RESULTS)
-    event = FakeEvent(message_str="找鸡 https://img.example.com/a.jpg")
+    event = FakeEvent(message_str="kfc50 https://img.example.com/a.jpg")
 
     outputs = run_handler(plugin, event)
 
@@ -153,7 +153,7 @@ def test_quoted_image_is_used():
         messages=[
             Reply(chain=[Image(url="https://img.example.com/quoted.jpg")]),
         ],
-        message_str="找鸡",
+        message_str="kfc50",
     )
 
     outputs = run_handler(plugin, event)
@@ -164,7 +164,7 @@ def test_quoted_image_is_used():
 
 def test_no_image_returns_usage():
     plugin = make_plugin(PIXIV_RESULTS)
-    event = FakeEvent(message_str="找鸡")
+    event = FakeEvent(message_str="kfc50")
 
     outputs = run_handler(plugin, event)
 
@@ -293,7 +293,7 @@ def test_quoted_reply_auto_mention_fallback():
                 sender_id="10002",
             ),
             At(qq="10002"),
-            Plain("找鸡"),
+            Plain("kfc50"),
         ],
         is_at_or_wake_command=False,
     )
@@ -314,7 +314,7 @@ def test_quoted_fallback_handles_wake_event_too():
                 sender_id="10002",
             ),
             At(qq="10002"),
-            Plain("找鸡"),
+            Plain("kfc50"),
         ],
         is_at_or_wake_command=True,
     )
@@ -335,7 +335,7 @@ def test_quoted_fallback_with_bot_mention():
             ),
             At(qq="10002"),
             At(qq="999"),
-            Plain(" 找鸡"),
+            Plain(" kfc50"),
         ],
         is_at_or_wake_command=True,
     )

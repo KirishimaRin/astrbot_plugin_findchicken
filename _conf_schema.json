@@ -32,7 +32,7 @@
     "hint": "低于该相似度的结果会被忽略。想更严格可调到 70，想显示所有候选可调到 0。"
   },
   "send_progress": {
-    "description": "搜索前是否发送「正在找鸡」提示",
+    "description": "搜索前是否发送「正在寻找」提示",
     "type": "bool",
     "default": true
   },
